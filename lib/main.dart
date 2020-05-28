@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         MyHomePage.routeName: (BuildContext context) => MyHomePage(),
         DetailsPage.routeName: (BuildContext context) => DetailsPage(),
       },
-      home: ResponsivePage(),
+      home: CatsPages(),
     );
   }
 }
