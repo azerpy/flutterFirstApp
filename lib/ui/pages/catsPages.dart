@@ -11,6 +11,32 @@ class CatsPages extends StatefulWidget {
 class _catPageState extends State<CatsPages> {
 
   final _catsRepository = CatsRepository.instance;
+
+  Animation<double> _opacityAnimation;
+
+  AnimationController _animationController;
+
+  @override
+  void initState(){
+    _animationController = AnimationController(
+      duration: Duration(seconds:4)
+    )
+    ..addListener((status) {
+      if(status == AnimationStatus.completed){
+        return null;
+      }
+    })
+
+    _opacityAnimation = Tween<double>(begin: 0.0, end:1.0).animate(
+      CurvedAnimation(
+        parent: _animationController
+      )
+    );
+
+    _animationController.forward();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +54,20 @@ class _catPageState extends State<CatsPages> {
               }
             );
           } else {
-            return CircularProgressIndicator();
+            return InkWell(
+              onTap: (){
+                print("toto")
+              },
+              child: Column(
+                children: <Widget>[
+                  CircularProgressIndicator(),
+                  CircularProgressIndicator(),
+                  CircularProgressIndicator(),
+                  CircularProgressIndicator(),
+                  CircularProgressIndicator()
+                ]
+              )
+            )
           }
         }
       )
